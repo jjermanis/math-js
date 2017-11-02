@@ -40,8 +40,44 @@ var MathModule = (function () {
         return true;
     }
 
+    var smallestPrimeFactor = function(n) {
+
+        if (n % 2 == 0)
+            return 2;
+        if (n % 3 == 0)
+            return 3;
+        var factor = 5;
+        while (factor * factor <= n)
+        {
+            if (n % factor == 0)
+                return factor;
+            if (n % (factor + 2) == 0)
+                return factor + 2;
+            factor += 6;
+        }
+        // n must be prime
+        return n;
+    }
+        
+    var primeFactors = function(n) {
+
+        var remaining = n;
+        var result = {};
+        while (remaining > 1)
+        {
+            var factor = smallestPrimeFactor(remaining);
+            if (result.hasOwnProperty(factor))
+                result[factor]++;
+            else
+                result[factor] = 1;
+            remaining /= factor;
+        }
+        return result;        
+    };
+    
     return {
-        isPrime: isPrime
+        isPrime: isPrime,
+        primeFactors: primeFactors
     }
 
 }());
