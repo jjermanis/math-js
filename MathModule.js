@@ -46,7 +46,7 @@ var MathModule = (function () {
             return 2;
         if (n % 3 == 0)
             return 3;
-        long factor = 5;
+        var factor = 5;
         while (factor * factor <= n)
         {
             if (n % factor == 0)
