@@ -59,8 +59,25 @@ var MathModule = (function () {
         return n;
     }
         
+    var primeFactors = function(n) {
+
+        var remaining = n;
+        var result = {};
+        while (remaining > 1)
+        {
+            var factor = smallestPrimeFactor(remaining);
+            if (result.hasOwnProperty(factor))
+                result[factor]++;
+            else
+                result[factor] = 1;
+            remaining /= factor;
+        }
+        return result;        
+    };
+    
     return {
-        isPrime: isPrime
+        isPrime: isPrime,
+        primeFactors: primeFactors
     }
 
 }());
